@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	  before_filter :authenticate_user!
+	allow_oauth!
+	before_filter :authenticate_user!
 
   def index
   end
