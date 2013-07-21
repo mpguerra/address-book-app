@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130720143843) do
+ActiveRecord::Schema.define(version: 20130720154147) do
+
+  create_table "opro_auth_grants", force: true do |t|
+    t.string   "code"
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.text     "permissions"
+    t.datetime "access_token_expires_at"
+    t.integer  "user_id"
+    t.integer  "application_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "opro_auth_grants", ["access_token"], name: "index_opro_auth_grants_on_access_token", unique: true
+  add_index "opro_auth_grants", ["code"], name: "index_opro_auth_grants_on_code", unique: true
+  add_index "opro_auth_grants", ["refresh_token"], name: "index_opro_auth_grants_on_refresh_token", unique: true
+
+  create_table "opro_client_apps", force: true do |t|
+    t.string   "name"
+    t.string   "app_id"
+    t.string   "app_secret"
+    t.text     "permissions"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "opro_client_apps", ["app_id", "app_secret"], name: "index_opro_client_apps_on_app_id_and_app_secret", unique: true
+  add_index "opro_client_apps", ["app_id"], name: "index_opro_client_apps_on_app_id", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"
