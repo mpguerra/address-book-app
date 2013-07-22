@@ -1,4 +1,17 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
+<% provide(:title, 'Home') %>
+<h1>Address Book App</h1>
+
+<% if signed_in? %>
+<p>
+  This is the home page for <%= current_user.name %>'s Contacts
+</p>
+
+<div class="span8">
+    <% if current_user.contacts.any? %>
+      <h3>Contacts (<%= current_user.contacts.count %>)</h3>
+      <ol class="contacts">
+        <%= render current_user.contacts %>
+      </ol>
+    <% end %>
+</div>
 <% end %>

@@ -48,7 +48,7 @@ end
 gem '3scale_client'
 
 # Use Grape
-gem 'grape'
+#gem 'grape'
 
 # Use Redis as the data store
 gem 'redis'
@@ -66,5 +66,6 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 
-gem 'devise'
+gem 'devise', '~> 3.0.0.rc'
+
 gem 'opro'

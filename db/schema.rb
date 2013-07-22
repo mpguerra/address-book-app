@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130720154147) do
+ActiveRecord::Schema.define(version: 20130721204828) do
+
+  create_table "contacts", force: true do |t|
+    t.string   "name"
+    t.integer  "phone"
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["user_id", "name"], name: "index_contacts_on_user_id_and_name"
 
   create_table "opro_auth_grants", force: true do |t|
     t.string   "code"
