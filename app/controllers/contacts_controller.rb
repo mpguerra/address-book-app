@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
   end
 
   def show
-  	@contact = current_user.contacts.find(:id)
+  	@contact = current_user.contacts.find(params[:id])
   	respond_to do |format|
   		format.html
   		format.json do
