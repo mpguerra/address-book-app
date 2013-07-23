@@ -1,16 +1,37 @@
 class UsersController < ApplicationController
-	allow_oauth!
 	before_filter :authenticate_user!
+  allow_oauth! :except => :delete
 
   def index
   end
 
   def show
+    @user = current_user if params[:id] == 'me'
+    @user ||= User.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json do
+        render :json => @user.to_public_json
+      end
+    end
   end
 
-  private
- 
-    def user_params
-      params.require(:user).permit(:name)
+  def update
+    @user = current_user
+    @user.update_attributes(params[:user])
+    respond_to do |format|
+      format.json do
+        render :json => @user.to_public_json
+      end
+      format.html do
+        render :edit
+      end
     end
+  end
+
+  def delete
+    @user = current_user
+    @user.destroy
+    redirect_to root_path
+  end
 end

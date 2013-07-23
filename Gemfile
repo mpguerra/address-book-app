@@ -3,11 +3,16 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+#ruby '1.9.3'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# Use PG?
+# gem pg
+
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.0.rc1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -25,7 +30,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+# gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -51,13 +56,13 @@ gem '3scale_client'
 #gem 'grape'
 
 # Use Redis as the data store
-gem 'redis'
+#gem 'redis'
 
 # Bootstrap framework
-gem 'bootstrap-sass', '2.3.2.0'
+#gem 'bootstrap-sass', '2.3.2.0'
 
 # Hashing for passwords
-gem 'bcrypt-ruby', '3.0.1'
+#gem 'bcrypt-ruby', '3.0.1'
 
 # Create fake users
 gem 'faker', '1.1.2'
@@ -69,3 +74,5 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'devise', '~> 3.0.0.rc'
 
 gem 'opro'
+
+gem 'protected_attributes'

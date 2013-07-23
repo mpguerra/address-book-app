@@ -1,20 +1,19 @@
+require '3scale_client'
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-    before_filter :configure_permitted_parameters, if: :devise_controller?
+  protect_from_forgery with: :null_session
 
-protected
- 
-  def devise_parameter_sanitizer
-    if resource_class == User
-      User::ParameterSanitizer.new(User, :user, params)
-    else
-      super
+  $client = ThreeScale::Client.new(:provider_key => ENV["MYAPI_PROVIDER_KEY"])
+
+    def authenticate!
+      response = $client.oauth_authorize(:app_id => params[:app_id])
+      response.error!('403 Unauthorized', 403) unless response.success?
+      return response
     end
-  end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:name, :email) }
-  end
+    def report!(method_name='hits', usage_value=1)
+      response = $client.report({:app_id => params[:app_id], :usage => {method_name => usage_value}})
+      response.error!('505 Reporting Error', 505) unless response.success?
+    end
 end
