@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
     def authenticate!
       response = $client.oauth_authorize(:app_id => params[:app_id])
-      response.error!('403 Unauthorized', 403) unless response.success?
+      response.error!('403 Unauthorized', 403) unless response.success? && response.app_key == params[:client_secret]
       return response
     end
 
