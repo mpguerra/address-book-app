@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
-
+  
   $client = ThreeScale::Client.new(:provider_key => ENV["MYAPI_PROVIDER_KEY"])
 
-    def authenticate!
-      $response = $client.oauth_authorize(:app_id => params[:app_id])
+    def threescale_authenticate!
+      $response = $client.oauth_authorize(:app_id => params[:client_id])
       $response.error!('403 Unauthorized', 403) unless $response.success? && $response.app_key == params[:client_secret]
     end
 

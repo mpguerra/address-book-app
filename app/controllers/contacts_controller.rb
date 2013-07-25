@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :authenticate!
+  before_filter :threescale_authenticate!
   allow_oauth!
 
   # GET /contacts(.:format)
