@@ -1,15 +1,18 @@
 AddressBookAppDevise::Application.routes.draw do
-  scope "/api" do
-    resources :contacts do
-      member do
-        get 'phone'
-      end
-    end
-  end
+  
+  # scope "/apis" do
+  #   resources :contacts do
+  #     member do
+  #       get 'phone'
+  #     end
+  #   end
+  # end
+
   mount_opro_oauth
   devise_for :users
   root :to => "home#index"
   resources :users
+  mount API => '/'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
