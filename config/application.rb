@@ -23,5 +23,6 @@ module AddressBookAppDevise
     #config.paths.add "app/api", glob: "**/*.rb"
     #config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
     #config.eager_load_paths += ["#{Rails.root}/lib}"]
+    config.force_ssl = true
   end
 end

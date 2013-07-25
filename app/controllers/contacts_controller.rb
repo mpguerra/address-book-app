@@ -1,19 +1,17 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :authenticate!
   allow_oauth!
 
   # GET /contacts(.:format)
   def index
-  	@contacts = current_user.contacts
   	respond_to do |format|
-  		format.html
   		format.json do
-  			@response = authenticate!
-  			if(@response.success?)
-  	        	report!
-  				render :json => @contacts.to_json
+  			if($response.success?)
+                report!
+  				render :json => current_user.contacts.to_json
   			else
-  				render :json => @response.error_message.to_json
+  				render :json => $response.error_message.to_json
   			end
   		end
   	end 
@@ -21,21 +19,19 @@ class ContactsController < ApplicationController
 
   # GET /contact/:id(.:format)
   def show
-  	@contact = current_user.contacts.find(params[:id])
   	respond_to do |format|
-  		#format.html
   		format.json do
-  			@response = authenticate!
-  			if(@response.success?)
+  			if($response.success?)
   				report!
-  				render :json => @contact.to_json
+  				render :json => current_user.contacts.find(params[:id]).to_json
   			else
-  				render :json => @response.error_message.to_json
+  				render :json => $response.error_message.to_json
   			end
   		end
   	end 
   end
 
+  # POST
   def create
   	name = "Get this from params"
   	phone = 1234
@@ -51,12 +47,11 @@ class ContactsController < ApplicationController
   	end
   end
 
-  # GET    /api/contacts/:id/phone(.:format)
+  # GET /api/contacts/:id/phone(.:format)
   def phone 
-  	@phone = current_user.contacts.find(params[:id]).phone
   	respond_to do |format|
   		format.html
-  		format.json { render :json => @phone.to_json }
+  		format.json { render :json => current_user.contacts.find(params[:id]).phone.to_json }
   	end
   end
 
