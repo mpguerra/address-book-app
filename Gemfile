@@ -53,7 +53,7 @@ end
 gem '3scale_client'
 
 # Use Grape
-gem 'grape'
+#gem 'grape'
 
 # Use Redis as the data store
 #gem 'redis'
