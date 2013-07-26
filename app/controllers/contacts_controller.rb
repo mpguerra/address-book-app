@@ -1,3 +1,4 @@
+require 'pry'
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :threescale_authenticate!
@@ -9,7 +10,7 @@ class ContactsController < ApplicationController
   	respond_to do |format|
   		format.json do
   			if($response.success?)
-          report!
+          report!('get_contacts',1)
   				render :json => current_user.contacts.to_json
   			else
   				render :json => $response.error_message.to_json

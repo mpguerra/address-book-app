@@ -76,3 +76,8 @@ gem 'devise', '~> 3.0.0.rc'
 gem 'opro'
 
 gem 'protected_attributes'
+
+group :development do
+	gem 'pry'
+	gem 'pry-debugger'
+end
