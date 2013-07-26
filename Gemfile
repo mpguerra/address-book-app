@@ -59,7 +59,7 @@ gem '3scale_client'
 #gem 'redis'
 
 # Bootstrap framework
-#gem 'bootstrap-sass', '2.3.2.0'
+gem 'bootstrap-sass', '2.3.2.0'
 
 # Hashing for passwords
 #gem 'bcrypt-ruby', '3.0.1'

@@ -1,17 +1,24 @@
 <% provide(:title, 'Home') %>
-<h1>Address Book App</h1>
+<div class="center hero-unit">
+    <h1>Address Book App</h1>
 
-<% if signed_in? %>
-<p>
-  This is the home page for <%= current_user.name %>'s Contacts
-</p>
-
-<div class="span8">
-    <% if current_user.contacts.any? %>
-      <h3>Contacts (<%= current_user.contacts.count %>)</h3>
-      <ol class="contacts">
-        <%= render current_user.contacts %>
-      </ol>
+    <h2>
+      This is the home page for the AddressBookApp
+    </h2>
+    <% if signed_in? %>
+    <p>
+      Welcome <%= current_user.name %>!
+    </p>
+    <div class="span8">
+      <% if current_user.contacts.any? %>
+        <h3>Contacts (<%= current_user.contacts.count %>)</h3>
+        <ol class="contacts">
+          <%= render current_user.contacts %>
+        </ol>
+      <% end %>   
+    </div>
+    <% else %>
+     <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
     <% end %>
+
 </div>
-<% end %>

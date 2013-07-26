@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AddressBookAppDevise</title>
+  <title>AddressBookApp | <%= yield(:title) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-    <div id="container" class="container">
-      <header>
-        <%= render 'layouts/navigation' %>
-        <%= render 'layouts/messages' %>
-      </header>
-      <div id="main" role="main">
-        <%= yield %>
-      </div>
-      <footer>
-      </footer>
-    </div> <!--! end of #container -->
+  <%= render 'layouts/header' %>
+  <%= render 'layouts/messages' %>
+  <div class="container" id="main" role="main">
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+  </div>
   </body>
 </html>
