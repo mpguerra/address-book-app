@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
   
-  $client = ThreeScale::Client.new(:provider_key => ENV["MYAPI_PROVIDER_KEY"])
+  $client = ThreeScale::Client.new(:provider_key => ENV['MYAPI_PROVIDER_KEY'])
 
     def threescale_authenticate!
       $response = $client.oauth_authorize(:app_id => params[:client_id])
