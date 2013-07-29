@@ -5,11 +5,8 @@ gem 'rails', '4.0.0'
 
 #ruby '1.9.3'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use PG?
-# gem pg
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
@@ -55,9 +52,6 @@ gem '3scale_client'
 # Use Grape
 #gem 'grape'
 
-# Use Redis as the data store
-#gem 'redis'
-
 # Bootstrap framework
 gem 'bootstrap-sass', '2.3.2.0'
 
@@ -80,4 +74,8 @@ gem 'protected_attributes'
 group :development do
 	gem 'pry'
 	gem 'pry-debugger'
+	# Use sqlite3 as the dev database for Active Record
+	#gem 'sqlite3'
 end
+
+gem 'yaml_db'
