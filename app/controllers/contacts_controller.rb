@@ -1,4 +1,3 @@
-require 'pry'
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :threescale_authenticate!
