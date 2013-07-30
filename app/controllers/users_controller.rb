@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update_attributes(params[:user])
+    @user.update_attributes(user_params)
     respond_to do |format|
       format.json do
         render :json => @user.to_public_json
@@ -33,5 +33,10 @@ class UsersController < ApplicationController
     @user = current_user
     @user.destroy
     redirect_to root_path
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 end

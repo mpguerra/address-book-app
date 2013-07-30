@@ -37,7 +37,7 @@ class ContactsController < ApplicationController
   	name = "Get this from params"
   	phone = 1234
   	email = "Get_this@from_params"
-  	@contact = Contact.create(:name => name, :phone => phone, :email => email)
+  	@contact = Contact.create(contact_params)
 
   	respond_to do |format|
   		if @contact.save
@@ -58,4 +58,9 @@ class ContactsController < ApplicationController
 
   def destroy
   end
+
+  private 
+    def contact_params
+      params.require(:contact).permit(:name,:email,:phone)
+    end
 end
