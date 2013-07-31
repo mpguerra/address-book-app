@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, only: [:index, :edit, :update]
   allow_oauth! :except => :delete
+  before_action :admin_user, only: :destroy
 
   def index
+     @users = User.paginate(page: params[:page])
   end
 
   def show
-    @user = current_user if params[:id] == 'me'
-    @user ||= User.find(params[:id])
+    @user = current_user
+    @contacts = current_user.contacts
     respond_to do |format|
       format.html
       format.json do
@@ -35,8 +37,18 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_url
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 end

@@ -1,3 +1,19 @@
-<h3>User</h3>
-<p>Name: <%= current_user.name %></p>
-<p>Email: <%= current_user.email %></p>
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+</div>
+ <div class="span8">
+    <% if @user.contacts.any? %>
+      <h3>Contacts (<%= @user.contacts.count %>)</h3>
+      <ol class="contacts">
+        <%= render @contacts %>
+      </ol>
+    <% end %>
+  </div>

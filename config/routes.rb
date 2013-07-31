@@ -1,11 +1,11 @@
 AddressBookAppDevise::Application.routes.draw do
-  scope "/api" do
-    resources :contacts do
-      member do
-        get 'phone'
-      end
-    end
+  resources :contacts
+
+  namespace :api do 
+    resources :contacts
+    get '*path', :to => redirect("/api/%{path}")
   end
+
   mount_opro_oauth
   devise_for :users
   root :to => "home#index"
