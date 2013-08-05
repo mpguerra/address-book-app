@@ -7,11 +7,12 @@
     </h2>
     <% if signed_in? %>
     <p>
-      Welcome <%= current_user.name %>!
+      Welcome <%= current_user.name %>
     </p>
+</div>
     <div class="span8">
       <% if current_user.contacts.any? %>
-        <h3>You have <%= current_user.contacts.count %> contacts</h3>      
+        <p>You have <%= current_user.contacts.count %> contacts</p>      
       <% else %>
         <p>You have no contacts, Add some? </p>
         <%= link_to "Add a new contact", controller: "contacts", action: "new" %>
@@ -21,4 +22,3 @@
      <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
     <% end %>
 
-</div>

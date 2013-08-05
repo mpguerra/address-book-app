@@ -4,11 +4,11 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :admin
+  attr_accessible :name, :email, :username, :password, :password_confirmation, :remember_me, :admin
   
   has_many :contacts, dependent: :destroy
-  validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_presence_of :name, :username
+  validates_uniqueness_of :name, :username, :email, :case_sensitive => false
 
   def to_public_json(options = {})
   	to_public_hash.to_json

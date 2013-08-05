@@ -1,4 +1,8 @@
 AddressBookAppDevise::Application.routes.draw do
+  mount_opro_oauth
+  devise_for :users
+  root :to => "home#index"
+  resources :users
   resources :contacts
 
   namespace :api do 
@@ -6,11 +10,13 @@ AddressBookAppDevise::Application.routes.draw do
     get '*path', :to => redirect("/api/%{path}")
   end
 
-  mount_opro_oauth
-  devise_for :users
-  root :to => "home#index"
-  resources :users
-  
+  get "static_pages/api"
+  resources :users do
+    member do
+      get :threescale_signin
+      post :threescale_signup
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

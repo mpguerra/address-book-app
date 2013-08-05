@@ -1,0 +1,16 @@
+<div class="center hero-unit">
+  <h1>Access our API!</h1>
+
+  Before we proceed we need to collect a bit more info about you:
+<div class="row">
+  <div class="span6 offset3">
+  <%= form_for(:user, :as => current_user, :url => threescale_signup_user_path(current_user)) do |f| %>
+    <%= f.label :org_name %>
+    <%= f.text_field :org_name, :autofocus => true %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  <%= f.submit "Give me access!", class: "btn btn-large btn-primary" %>
+<% end %>
+</div>
+</div>
+</div>
