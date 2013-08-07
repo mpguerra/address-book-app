@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     flash[:success] = "User destroyed."
     redirect_to users_url
   end
-
+  
   # creates a user in the 3scale developer portal
   def threescale_signup
     payload = {}
