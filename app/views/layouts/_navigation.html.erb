@@ -8,9 +8,15 @@
     <li>
     <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
     </li>
+    <% if current_user.is_developer %>
+    <li>
+    <%= link_to 'API', threescale_signin_user_path(current_user.id) %>
+    </li>
+    <% else %>
     <li>
     <%= link_to 'API', static_pages_api_path %>
     </li>
+    <% end %>
   <% else %>
     <li>
     <%= link_to 'Login', new_user_session_path %>
