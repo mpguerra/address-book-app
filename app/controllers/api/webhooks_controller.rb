@@ -2,12 +2,11 @@ module Api
   class WebhooksController < ApplicationController
 
     def create
-      # binding.pry
+
       doc = Nokogiri::XML(request.raw_post)
-      puts doc
-      action = doc.at_css('event//action')
-      entity = doc.at_css('event//type')
-      puts action
+      action = doc.at_css('event//action').content
+      entity = doc.at_css('event//type').content
+
       case action
       when "created"
         create_entity(entity, doc)
@@ -20,8 +19,7 @@ module Api
     private
 
     def create_entity(entity, xml)
-      puts entity
-      # binding.pry
+
       case entity
       when "user"
         new_user(xml)
@@ -31,7 +29,7 @@ module Api
     end
 
     def udpate_entity(entity, xml)
-      puts entity
+
       case entity
       when "user"
         update_user(xml)
@@ -41,14 +39,12 @@ module Api
     end
 
     def new_app(xml)
-      puts "new app"
-      puts xml
-      # binding.pry
-      client_id = params[:client_id]
-      client_secret = params[:client_secret]
-      app_name = params[:app_name]
-
-      @client_app = Opro::Oauth::ClientApp.create_with_user_and_name(current_user, client_app_name)
+      client_id = xml.at_css('event//object//application//application_id').content
+      client_secret = xml.at_css('event//object//application//keys//key').content
+      app_name = xml.at_css('event//object//application//name').content
+      binding.pry
+      # how do I know which user to create app for?
+      @client_app = Opro::Oauth::ClientApp.create_with_user_and_name(current_user, app_name)
       @client_app.update_attribute(:app_id, client_id)
       @client_app.update_attribute(:app_secret, client_secret)
     end
@@ -57,10 +53,14 @@ module Api
     end
 
     def new_user(xml)
-      puts "new user"
-      puts xml
-      # binding.pry
-      @new_user = User.new(:name => params['name'], :email => params['email'], :password => params['password'], :password_confirmation => params['password'], :username => params['username'], :org_name => params['org_name'])
+      username = xml.at_css('event//object//user//username').content
+      email = xml.at_css('event//object//user//email').content
+      account_id = xml.at_css('event//object//user//id').content
+      # password = xml.at_css()
+      # name = xml.at_css()
+      # org_name = xml.at_css()
+      binding.pry
+      @new_user = User.new(:name => name, :email => email, :password => password, :password_confirmation => password, :username => username, :org_name => org_name)
       @new_user.save
       sign_in @new_user
     end
