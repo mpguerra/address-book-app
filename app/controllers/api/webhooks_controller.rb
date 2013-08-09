@@ -4,8 +4,10 @@ module Api
     def create
       # binding.pry
       doc = Nokogiri::XML(request.raw_post)
+      puts doc
       action = doc.at_css('event//action')
       entity = doc.at_css('event//type')
+      puts action
       case action
       when "created"
         create_entity(entity, doc)
@@ -18,6 +20,7 @@ module Api
     private
 
     def create_entity(entity, xml)
+      puts entity
       # binding.pry
       case entity
       when "user"
@@ -28,6 +31,7 @@ module Api
     end
 
     def udpate_entity(entity, xml)
+      puts entity
       case entity
       when "user"
         update_user(xml)
@@ -37,6 +41,8 @@ module Api
     end
 
     def new_app(xml)
+      puts "new app"
+      puts xml
       # binding.pry
       client_id = params[:client_id]
       client_secret = params[:client_secret]
@@ -51,6 +57,8 @@ module Api
     end
 
     def new_user(xml)
+      puts "new user"
+      puts xml
       # binding.pry
       @new_user = User.new(:name => params['name'], :email => params['email'], :password => params['password'], :password_confirmation => params['password'], :username => params['username'], :org_name => params['org_name'])
       @new_user.save
