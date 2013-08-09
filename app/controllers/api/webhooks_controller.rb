@@ -2,7 +2,7 @@ module Api
   class WebhooksController < ApplicationController
 
     def create
-      binding.pry
+      # binding.pry
       doc = Nokogiri::XML(request.raw_post)
       action = doc.at_css('event//action')
       entity = doc.at_css('event//type')
@@ -18,7 +18,7 @@ module Api
     private
 
     def create_entity(entity, xml)
-      binding.pry
+      # binding.pry
       case entity
       when "user"
         new_user(xml)
@@ -37,7 +37,7 @@ module Api
     end
 
     def new_app(xml)
-      binding.pry
+      # binding.pry
       client_id = params[:client_id]
       client_secret = params[:client_secret]
       app_name = params[:app_name]
@@ -51,7 +51,7 @@ module Api
     end
 
     def new_user(xml)
-      binding.pry
+      # binding.pry
       @new_user = User.new(:name => params['name'], :email => params['email'], :password => params['password'], :password_confirmation => params['password'], :username => params['username'], :org_name => params['org_name'])
       @new_user.save
       sign_in @new_user
