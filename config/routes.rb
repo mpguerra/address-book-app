@@ -5,8 +5,9 @@ AddressBookAppDevise::Application.routes.draw do
   resources :users
   resources :contacts
 
-  namespace :api do 
+  namespace :api do
     resources :contacts
+    resources :webhooks
     get '*path', :to => redirect("/api/%{path}")
   end
 
@@ -57,7 +58,7 @@ AddressBookAppDevise::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
