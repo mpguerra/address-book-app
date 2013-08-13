@@ -33,7 +33,7 @@ end
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Use 3scale plugin 
+# Use 3scale plugin
 gem '3scale_client'
 
 # Bootstrap framework
@@ -50,10 +50,10 @@ gem 'opro'
 gem 'protected_attributes'
 
 group :development do
-	gem 'pry'
-	gem 'pry-debugger'
-	# Create fake users
-	gem 'faker', '1.1.2'
+  gem 'pry'
+  gem 'pry-debugger'
+  # Create fake users
+  gem 'faker', '1.1.2'
 end
 
 gem 'yaml_db'
