@@ -45,7 +45,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 
 gem 'devise', '~> 3.0.0.rc'
 
-gem 'opro'
+gem 'opro', :git => 'git://github.com/mpguerra/opro.git'
 
 gem 'protected_attributes'
 
