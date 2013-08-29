@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:index, :edit, :update]
   allow_oauth!
   respond_to :html, :json
 
@@ -10,6 +10,7 @@ class ContactsController < ApplicationController
 
   # GET /contact/:id(.:format)
   def show
+    @contact = Contact.find(params[:id])
   end
 
   # POST
@@ -26,12 +27,12 @@ class ContactsController < ApplicationController
   def new
     @contact = Contact.new
   end
-  
+
   def destroy
   end
 
-  private 
-    def contact_params
-      params.require(:contact).permit(:name,:email,:phone)
-    end
+  private
+  def contact_params
+    params.require(:contact).permit(:name,:email,:phone)
+  end
 end

@@ -1,5 +1,7 @@
+<li>
 <%= gravatar_for contact %>
 <%= link_to contact.name, contact %>
 <%= contact.email %>
 <%= contact.phone %>
 <%= link_to "delete", contact, method: :delete, data: { confirm: "You sure?" } %>
+</li>

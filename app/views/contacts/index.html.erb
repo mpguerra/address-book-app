@@ -2,12 +2,11 @@
 <h1>Your contacts</h1>
 
 <%= will_paginate %>
-<div class="row">
-  <div class="span6 offset3">
+
 <ul class="contacts">
-  <%= render @contacts %>
+  <% current_user.contacts.each do |contact| %>
+    <%= render contact %>
+  <% end %>
 </ul>
-  </div>
-</div>
 
 <%= will_paginate %>
