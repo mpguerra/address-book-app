@@ -1,19 +1,9 @@
-<% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
+  <div class="span8">
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-    </section>
-  </aside>
-</div>
- <div class="span8">
-    <% if @user.contacts.any? %>
-      <h3>Contacts (<%= @user.contacts.count %>)</h3>
-      <ol class="contacts">
-        <%= render @contacts %>
-      </ol>
-    <% end %>
+      <h2><%= @user.contacts.count %> contacts</h2>
   </div>
+</div>

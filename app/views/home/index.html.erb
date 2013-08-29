@@ -1,24 +1,24 @@
 <% provide(:title, 'Home') %>
-<div class="center hero-unit">
+<% if signed_in? %>
+<div class="row">
+  <div class="span8">
+    <p>Welcome <%= current_user.name %>.
+    <% if current_user.contacts.any? %>
+      You have <%= current_user.contacts.count %> contacts
+    <% else %>
+      You have no contacts, Add some?
+      <%= link_to "Add a new contact", controller: "contacts", action: "new" %>
+    <% end %> 
+    </p>
+  </div>
+</div>
+<% else %>
+  <div class="center hero-unit">
     <h1>Address Book App</h1>
 
-    <h2>
-      Store all your contacts!
-    </h2>
-    <% if signed_in? %>
-    <p>
-      Welcome <%= current_user.name %>
-    </p>
+    <h2>Store all your contacts!</h2>
+
+  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
 </div>
-    <div class="span8">
-      <% if current_user.contacts.any? %>
-        <p>You have <%= current_user.contacts.count %> contacts</p>      
-      <% else %>
-        <p>You have no contacts, Add some? </p>
-        <%= link_to "Add a new contact", controller: "contacts", action: "new" %>
-      <% end %>   
-    </div>
-    <% else %>
-     <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
-    <% end %>
+<% end %>
 

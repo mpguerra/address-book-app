@@ -1,10 +1,12 @@
-<%= link_to "Address Book Application", root_path, :class => 'brand' %>
+<%= link_to "Address Book Application", root_path, id: "logo" %>
 <nav>
   <ul class="nav pull-right">
-     <li><%= link_to "Home", root_path %></li>
-  <% if user_signed_in? %>
-    <li id="fat-menu" class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contacts<b class="caret"></b></a>
+     <li><%= link_to "Home", root_path  %></li>
+     <% if user_signed_in? %>
+     <li id="fat-menu" class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Contacts<b class="caret"></b>
+      </a>
       <ul class="dropdown-menu">
         <li><%= link_to 'View', contacts_path %></li>
         <li><%= link_to 'New', new_contact_path %></li>
