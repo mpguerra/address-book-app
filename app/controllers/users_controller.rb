@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
-  allow_oauth! :except => :delete
   before_action :admin_user, only: :destroy
 
   def index

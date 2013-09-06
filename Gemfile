@@ -33,9 +33,6 @@ end
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Use 3scale plugin
-gem '3scale_client'
-
 # Bootstrap framework
 gem 'bootstrap-sass', '2.3.2.0'
 
@@ -44,8 +41,6 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 
 gem 'devise', '~> 3.0.0.rc'
-
-gem 'opro', :git => 'git://github.com/mpguerra/opro.git'
 
 gem 'protected_attributes'
 

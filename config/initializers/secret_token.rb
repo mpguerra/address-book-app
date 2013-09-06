@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-AddressBookAppDevise::Application.config.secret_key_base = ENV['ADDRESS_BOOK_APP_WEBHOOKS_SECRET_KEY']
+AddressBookApp::Application.config.secret_key_base = ENV['ADDRESS_BOOK_APP_SECRET_KEY']

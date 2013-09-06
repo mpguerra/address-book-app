@@ -44,9 +44,6 @@ module Api
       app_name = xml.at_css('event//object//application//name').content
       user_account_id = xml.at_css('event//object//application//user_account_id').content
       user = User.find_by developer_account_id: user_account_id
-      @client_app = Opro::Oauth::ClientApp.create_with_user_and_name(user, app_name)
-      @client_app.update_attribute(:app_id, client_id)
-      @client_app.update_attribute(:app_secret, client_secret)
     end
 
     def update_app(xml)

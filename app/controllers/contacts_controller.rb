@@ -1,6 +1,5 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
-  allow_oauth!
   respond_to :html, :json
 
   # GET /contacts(.:format)

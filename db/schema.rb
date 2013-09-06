@@ -27,35 +27,6 @@ ActiveRecord::Schema.define(version: 20130813113418) do
 
   add_index "contacts", ["user_id", "name"], name: "index_contacts_on_user_id_and_name", using: :btree
 
-  create_table "opro_auth_grants", force: true do |t|
-    t.string   "code"
-    t.string   "access_token"
-    t.string   "refresh_token"
-    t.text     "permissions"
-    t.datetime "access_token_expires_at"
-    t.integer  "user_id"
-    t.integer  "application_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "opro_auth_grants", ["access_token"], name: "index_opro_auth_grants_on_access_token", unique: true, using: :btree
-  add_index "opro_auth_grants", ["code"], name: "index_opro_auth_grants_on_code", unique: true, using: :btree
-  add_index "opro_auth_grants", ["refresh_token"], name: "index_opro_auth_grants_on_refresh_token", unique: true, using: :btree
-
-  create_table "opro_client_apps", force: true do |t|
-    t.string   "name"
-    t.string   "app_id"
-    t.string   "app_secret"
-    t.text     "permissions"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "opro_client_apps", ["app_id", "app_secret"], name: "index_opro_client_apps_on_app_id_and_app_secret", unique: true, using: :btree
-  add_index "opro_client_apps", ["app_id"], name: "index_opro_client_apps_on_app_id", unique: true, using: :btree
-
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -71,10 +42,10 @@ ActiveRecord::Schema.define(version: 20130813113418) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "developer_account_id",   limit: 8
     t.string   "username"
     t.string   "org_name"
     t.boolean  "is_developer"
-    t.integer  "developer_account_id",   limit: 8
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
