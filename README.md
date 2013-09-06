@@ -1,4 +1,4 @@
-address-book-app-webhooks
-=========================
+address-book-app
+================
 
-Address Book Application + API using 3scale Webhooks
+A Simple Address Book Application
