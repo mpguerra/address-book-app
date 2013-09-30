@@ -1,0 +1,16 @@
+<h1>Do you want to Authorize this?</h1>
+<p>This will show you what to authorize</p>
+
+
+<form name="input" action="http://3qr7.localtunnel.com/callback?" method="post">
+	<p>You are authorizing the following application <%= @plan_id %> access to <%= @plan_id %> </p>
+  <p>Will have the token: <%= @pre_token %></p>
+
+  <input type="hidden" name="state" value="<%= @my_local_state %>">
+  <input type="hidden" name="plan_id" value="<%= @plan_id %>">
+<br />
+  <div class="btn-group">
+    <button type="submit" class="btn">Accept</button>
+  </div>
+
+</form>
