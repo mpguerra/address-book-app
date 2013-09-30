@@ -1,4 +1,9 @@
 class StaticPagesController < ApplicationController
-  def api
+  before_filter :authenticate_user!, only: [:authorize]
+
+  def authorize
+  	@my_local_state = params[:state]
+  	@plan_id = params[:scope]
+  	@pre_token = params[:tok]
   end
 end
