@@ -36,3 +36,4 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 >>>>>>> a69dd066e1a8dacc802d9f395d00dddd6f2c969c
+.elasticbeanstalk/
