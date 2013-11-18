@@ -5,7 +5,8 @@ gem 'rails', '4.0.0'
 
 ruby '2.0.0'
 
-gem 'pg'
+#gem 'pg'
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
