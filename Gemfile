@@ -54,4 +54,4 @@ end
 
 gem 'yaml_db'
 
-gem 'rails_12factor'
+# gem 'rails_12factor'

@@ -24,6 +24,6 @@ module AddressBookApp
     #config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
     #config.eager_load_paths += ["#{Rails.root}/lib}"]
     #config.force_ssl = true
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    #config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end
