@@ -47,7 +47,7 @@ gem 'protected_attributes'
 
 group :development do
   gem 'pry'
-  gem 'pry-debugger'
+  # gem 'pry-debugger'
   # Create fake users
   gem 'faker', '1.1.2'
 end
