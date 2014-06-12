@@ -1,6 +1,7 @@
 module Api
   class ContactsController < ApplicationController
-    before_filter :authenticate_user!
+    #before_filter :authenticate_user!
+    before_filter :restrict_access
     respond_to :html, :json
 
     # GET /contacts(.:format)
@@ -46,6 +47,15 @@ module Api
     end
 
     def destroy
+    end
+
+    protected
+    def restrict_access
+      if request.host != 'address-book-app-api-gateway.herokuapp.com'
+        redirect_to '/'
+        flash.now[:notice] = "Access denied!"
+        return false
+      end
     end
 
     private
