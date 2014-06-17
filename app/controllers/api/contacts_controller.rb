@@ -51,6 +51,7 @@ module Api
 
     protected
     def restrict_access
+      puts request.host
       if request.host != 'address-book-app-api-gateway.herokuapp.com'
         redirect_to '/'
         flash.now[:notice] = "Access denied!"
