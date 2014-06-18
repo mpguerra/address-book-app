@@ -51,7 +51,7 @@ module Api
 
     protected
     def restrict_access
-      secret_token = request['X-3scale-proxy-secret-token']
+      secret_token = request.headers['X-3scale-proxy-secret-token']
       puts "Secret Token sent from Proxy: #{secret_token}"
       if secret_token != 'ThisIsASecretToken'
         redirect_to '/'
