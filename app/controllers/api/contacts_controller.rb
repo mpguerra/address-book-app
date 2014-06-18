@@ -53,9 +53,9 @@ module Api
     def restrict_access
       secret_token = request.headers['X-3scale-proxy-secret-token']
       if secret_token != 'ThisIsASecretToken'
-        redirect_to '/'
-        flash.now[:notice] = "Access denied!"
-        return false
+        #redirect_to '/'
+        #flash.now[:notice] = "Access denied!"
+        return {render :json => { :outcome => "access_denied" }}
       end
     end
 
