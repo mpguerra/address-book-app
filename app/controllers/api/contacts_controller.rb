@@ -51,8 +51,8 @@ module Api
 
     protected
     def restrict_access
-      puts request.host
-      if request.host != 'address-book-app.herokuapp.com'
+      secret_token = request['X-3scale-proxy-secret-token']
+      if secret_token != 'ThisIsASecretToken'
         redirect_to '/'
         flash.now[:notice] = "Access denied!"
         return false
