@@ -6,9 +6,10 @@ module Api
 
     # GET /contacts(.:format)
     def index
+      @user = User.find_by username: params[:username]
       respond_to do |format|
         format.json do
-          render :json => current_user.contacts.to_json
+          render :json => @user.contacts.to_json
         end
       end
     end
@@ -57,8 +58,6 @@ module Api
           format.html
           format.json { render :json => { :outcome => 'Access Denied'} }
         end
-        #redirect_to '/'
-        #flash.now[:notice] = "Access denied!"
         return false
       end
     end
