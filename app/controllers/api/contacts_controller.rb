@@ -53,7 +53,7 @@ module Api
     protected
     def restrict_access
       secret_token = request.headers['X-3scale-proxy-secret-token']
-      if secret_token != 'ThisIsASecretToken'
+      if secret_token != ENV['SHARED_PROXY_SECRET']
         respond_to do |format|
           format.html
           format.json { render :json => { :outcome => 'Access Denied'} }
